@@ -8,8 +8,15 @@ app.get('/', function(req, res){
 });
 
 io.on('connection', function(socket){
+
   socket.on('chat message', function(msg){
-  	if(msg.includes("poop")) msg="you said a baddy"
+  	console.log("solve command received");
+    io.emit('solve', 'blue');
+  });
+});
+
+  socket.on('chat message', function(msg){
+  	if(msg.includes("poop")) msg="you said a baddy";
     io.emit('chat message', msg);
   });
 });
